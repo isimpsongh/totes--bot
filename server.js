@@ -43,6 +43,8 @@ var DEFAULT_FROM = 'Totes the Goat',
     from = process.env.FROM || argv.from || DEFAULT_FROM,
     roomId = process.env.ROOM_ID || argv.roomId || DEFAULT_ROOM_ID;
 
+console.log(port);
+
 if(hipchatAuthToken === null) {
     console.log('Unable to start without a HipChat Auth Token :-/');
     return;
@@ -56,7 +58,9 @@ if (argv.help) {
 function getJacksFerrariFactor (ret) {
     request(YAHOO_GRUB_QUOTE_URL, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            ret(Math.floor(parseFloat(JSON.parse(body).query.results.quote.BidRealtime) * 0.36));
+            var rtb = parseFloat(JSON.parse(body).query.results.quote.BidRealtime),
+                f = Math.floor(rtb * 0.36);
+            ret(f, 'floor(' + rtb + ' * 0.36 = ' + (rtb * 0.36) + ') = ' + f);
         }
     });
 }
@@ -96,8 +100,8 @@ var app = express()
         res.send('Totes Bot is running.');
     })
     .get('/jacksFerrariFactor', function (req, res) {
-        getJacksFerrariFactor(function (factor) {
-            res.send('' + factor);
+        getJacksFerrariFactor(function (factor, mathMsg) {
+            res.send(mathMsg);
         });
     })
     .get('/postJacksFerrariReport', function (req, res) {
