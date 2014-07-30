@@ -1,0 +1,26 @@
+{
+  "name": "yurt-chat",
+  "version": "0.0.0",
+  "description": "Chat bot for The Yurt",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isimpsongh/yurt-chat.git"
+  },
+  "author": "Isaiah Simpson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isimpsongh/yurt-chat/issues"
+  },
+  "homepage": "https://github.com/isimpsongh/yurt-chat",
+  "dependencies": {
+    "express": "^4.7.2",
+    "optimist": "^0.6.1",
+    "pg.js": "^3.4.1",
+    "request": "^2.39.0"
+  }
+}
