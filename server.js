@@ -1,7 +1,7 @@
 /*jshint node: true */
 'use strict';
 
-var DEFAULT_FROM = 'Totes',
+var DEFAULT_FROM = 'Totes the Goat',
     DEFAULT_PORT =  5000,
     THE_YURT_ROOM_ID = 98025,
     TESTING_ROOM_ID = 726139,
@@ -93,7 +93,7 @@ function postHipChatMessage (room, messages, done) {
 
 var app = express()
     .get('/', function (req, res) {
-        res.send('YurtChat is running.');
+        res.send('Totes Bot is running.');
     })
     .get('/jacksFerrariFactor', function (req, res) {
         getJacksFerrariFactor(function (factor) {
@@ -111,6 +111,11 @@ var app = express()
             postHipChatMessage(roomId, [ 'Jack\'s Ferrari Pile, Today: ', msg ], function (doneMsg) {
                 res.send(doneMsg);
             });
+        });
+    })
+    .get('/postAsTotes/:msg', function (req, res) {
+        postHipChatMessage(roomId, [ req.param('msg') ], function (doneMsg) {
+            res.send(doneMsg);
         });
     });
 
